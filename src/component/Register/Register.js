@@ -15,11 +15,12 @@ export default function Register() {
         isAgreed: false,
     });
 
-    const [nameError, setNameError] = useState(true);
     const [errors, setErrors] = useState({
         name: "",
         email: "",
         mobile: "",
+        userName: "",
+        isAgreed: "",
     });
 
     const handleChange = (event) => {
@@ -32,32 +33,35 @@ export default function Register() {
     const handleSubmit = (event) => {
         let isValid = true;
         event.preventDefault();
+
         if (!formData.name.trim().length) {
-            setNameError(true);
-            setErrors({ ...errors, name: "Dynamic error message" });
+            isValid = false;
+            setErrors({ ...errors, name: "Name field required" });
         }
 
-        // if (!formData.email.trim().length) {
-        //     setErrors({ ...errors, name: "Dynamic error message" });
-        // }
+        if (!formData.email.trim().length) {
+            isValid = false;
+            setErrors({ ...errors, email: "Email field required" });
+        }
 
-        // if (!formData.password.trim().length) {
-        //     setErrors({ ...errors, name: "Dynamic error message" });
-        // }
+        if (!formData.password.trim().length) {
+            isValid = false;
+            setErrors({ ...errors, password: "Password field required" });
+        }
 
-        // if (!formData.userName.trim().length) {
-        //     setErrors({ ...errors, name: "Dynamic error message" });
-        // }
+        if (!formData.userName.trim().length) {
+            isValid = false;
+            setErrors({ ...errors, userName: "Username field required" });
+        }
 
-        // if (!formData.isAgreed) {
-        //     setNameError(true);
-        //     setErrors({ ...errors, name: "Dynamic error message" });
-        // }
+        if (!formData.isAgreed) {
+            isValid = false;
+            setErrors({ ...errors, isAgreed: "Agreement field is required" });
+        }
 
-        // every form data is filled properly
-        // navigate to genre
-        // also save the data in the localstorage
-        if (formData.name && formData.userName) {
+        // you can always change the error message for each field based on additional checks
+
+        if (isValid) {
             localStorage.setItem("userData", formData);
             navigate("/genre");
         }
@@ -86,7 +90,7 @@ export default function Register() {
                     ></input>
 
                     {errors.name ? (
-                        <p className={styles.error}>Name field is required</p>
+                        <p className={styles.error}>{errors.name}</p>
                     ) : (
                         <></>
                     )}
@@ -98,11 +102,11 @@ export default function Register() {
                         onChange={(event) => handleChange(event)}
                     ></input>
 
-                    {/* {userNameError ? (
-                        <p className={styles.error}>Please fill correctly</p>
+                    {errors.userName ? (
+                        <p className={styles.error}>{errors.userName}</p>
                     ) : (
                         <></>
-                    )} */}
+                    )}
 
                     <input
                         type="email"
@@ -111,11 +115,11 @@ export default function Register() {
                         onChange={(event) => handleChange(event)}
                     ></input>
 
-                    {/* {emailError ? (
-                        <p className={styles.error}>Please fill correctly</p>
+                    {errors.email ? (
+                        <p className={styles.error}>{errors.email} </p>
                     ) : (
                         <></>
-                    )} */}
+                    )}
 
                     <input
                         type="tel"
@@ -123,11 +127,12 @@ export default function Register() {
                         placeholder="Mobile"
                         onChange={(event) => handleChange(event)}
                     ></input>
-                    {/* {mobileError ? (
-                        <p className={styles.error}>Please fill correctly</p>
+
+                    {errors.mobile ? (
+                        <p className={styles.error}>{errors.mobile}</p>
                     ) : (
                         <></>
-                    )} */}
+                    )}
 
                     <label>
                         <input
@@ -137,18 +142,17 @@ export default function Register() {
                                     [e.target.name]: e.target.checked,
                                 })
                             }
-                            // onChange={(event) => handleChange(event)}
                             type="checkbox"
                             name="check"
                         />
                         Share my registration data with Superapp
                     </label>
 
-                    {/* {isAgreedError ? (
-                        <p className={styles.error}>Please tick this</p>
+                    {errors.isAgreed ? (
+                        <p className={styles.error}>{errors.isAgreed}</p>
                     ) : (
                         <></>
-                    )} */}
+                    )}
 
                     <Button onClick={handleSubmit} />
                     <footer className={styles.footer}>
