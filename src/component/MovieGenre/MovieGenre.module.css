@@ -1,0 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Single+Day&display=swap");
+
+.body {
+    background-color: black;
+    display: flex;
+    padding-right: 20px;
+    min-height: 125vh;
+}
+
+.right {
+    width: 37vw;
+    max-height: 80vh;
+    max-width: 40vw;
+    height: 80vh;
+    padding-top: 5vh;
+    display: grid;
+    gap: 3vw;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.left {
+    width: 45vw;
+    height: 80vh;
+    padding-top: 10vh;
+    text-align: center;
+    padding-left: 5vw;
+    box-sizing: border-box;
+}
+
+.heading {
+    font-size: 5rem;
+    color: green;
+    font-family: "Single Day", cursive;
+}
+
+.subHeading {
+    font-size: 3rem;
+    color: white;
+    text-align: left;
+    margin-top: 4vh;
+}
+
+.signUp {
+    color: white;
+    background: green;
+    border-radius: 12px;
+    border: none;
+    padding: 12px;
+    height: 50px;
+    width: 10%;
+    position: relative;
+    top: 115vh;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+}

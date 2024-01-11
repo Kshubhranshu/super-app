@@ -1,5 +1,10 @@
 import React from "react";
+import MovieGenre from "../../component/MovieGenre/MovieGenre";
 
 export default function Genre() {
-    return <div>Genre</div>;
+    return (
+        <div>
+            <MovieGenre />
+        </div>
+    );
 }
