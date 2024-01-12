@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import styles from "./Register.module.css";
@@ -15,13 +15,7 @@ export default function Register() {
         isAgreed: false,
     });
 
-    const [errors, setErrors] = useState({
-        name: "",
-        email: "",
-        mobile: "",
-        userName: "",
-        isAgreed: "",
-    });
+    const [errors, setErrors] = useState({});
 
     const handleChange = (event) => {
         setFormData({
@@ -31,41 +25,42 @@ export default function Register() {
     };
 
     const handleSubmit = (event) => {
-        let isValid = true;
         event.preventDefault();
-
-        console.log(formData);
+        const errors = {};
 
         if (!formData.name.trim().length) {
-            isValid = false;
-            setErrors({ ...errors, name: "Name field required" });
+            errors.name = "name required";
         }
 
         if (!formData.email.trim().length) {
-            isValid = false;
-            setErrors({ ...errors, email: "Email field required" });
+            errors.email = "email required";
         }
 
-        if (!formData.userName.trim().length) {
-            isValid = false;
-            setErrors({ ...errors, userName: "Username field required" });
-        }
+        setErrors(errors);
 
-        if (!formData.isAgreed) {
-            isValid = false;
-            setErrors({ ...errors, isAgreed: "Agreement field is required" });
-        }
+        // if (!formData.userName.trim().length) {
+        //     isValid = false;
+        //     setErrors({ ...errors, userName: "Username field required" });
+        // }
 
-        if (!formData.mobile.trim()) {
-        }
+        // if (!formData.isAgreed) {
+        //     isValid = false;
+        //     // setErrors({ ...errors, isAgreed: "Agreement field is required" });
+        // }
+
+        // if (!formData.mobile.trim()) {
+        // }
 
         // you can always change the error message for each field based on additional checks
-
-        if (isValid) {
+        if (Object.keys(errors).length) {
             localStorage.setItem("userData", JSON.stringify(formData));
             navigate("/genre");
         }
     };
+
+    useEffect(() => {
+        console.log(errors);
+    }, [errors]);
 
     return (
         <div className={styles.container}>
