@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function BlockCard(props) {
     const [isSelected, setIsSelected] = useState(false);
@@ -17,6 +17,12 @@ export default function BlockCard(props) {
             props.setCategories(newCategoryList);
         }
     };
+
+    useEffect(() => {
+        const isExists =
+            props.categoriesList.includes(props.genreDetails.id) === true;
+        setIsSelected(isExists);
+    });
 
     return (
         <div

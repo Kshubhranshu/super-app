@@ -34,6 +34,8 @@ export default function Register() {
         let isValid = true;
         event.preventDefault();
 
+        console.log(formData);
+
         if (!formData.name.trim().length) {
             isValid = false;
             setErrors({ ...errors, name: "Name field required" });
@@ -42,11 +44,6 @@ export default function Register() {
         if (!formData.email.trim().length) {
             isValid = false;
             setErrors({ ...errors, email: "Email field required" });
-        }
-
-        if (!formData.password.trim().length) {
-            isValid = false;
-            setErrors({ ...errors, password: "Password field required" });
         }
 
         if (!formData.userName.trim().length) {
@@ -59,10 +56,13 @@ export default function Register() {
             setErrors({ ...errors, isAgreed: "Agreement field is required" });
         }
 
+        if (!formData.mobile.trim()) {
+        }
+
         // you can always change the error message for each field based on additional checks
 
         if (isValid) {
-            localStorage.setItem("userData", formData);
+            localStorage.setItem("userData", JSON.stringify(formData));
             navigate("/genre");
         }
     };
@@ -97,7 +97,7 @@ export default function Register() {
 
                     <input
                         type="text"
-                        name="username"
+                        name="userName"
                         placeholder="Enter your username"
                         onChange={(event) => handleChange(event)}
                     ></input>
@@ -143,7 +143,7 @@ export default function Register() {
                                 })
                             }
                             type="checkbox"
-                            name="check"
+                            name="isAgreed"
                         />
                         Share my registration data with Superapp
                     </label>

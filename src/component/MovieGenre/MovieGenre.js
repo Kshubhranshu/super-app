@@ -10,7 +10,7 @@ import music from "../../assets/images/music.png";
 import romance from "../../assets/images/romance.png";
 import thriller from "../../assets/images/thriller.png";
 import western from "../../assets/images/western.png";
-// import BlockCard from "../BlockCard/BlockCard";
+import BlockCard from "../BlockCard/BlockCard";
 
 import styles from "./MovieGenre.module.css";
 
@@ -84,10 +84,6 @@ const Category = () => {
     const [categories, setCategories] = useState([]);
     const [lengthError, setLengthError] = useState(false);
 
-    useEffect(() => {
-        console.log("categories", categories);
-    }, [categories]);
-
     const removeCategory = (value) => {
         const newCategoryList = categories.filter(
             (category) => category !== value
@@ -101,7 +97,7 @@ const Category = () => {
             return;
         }
         localStorage.setItem("genre", categories);
-        navigate("/home");
+        navigate("/");
     };
 
     return (
@@ -143,47 +139,6 @@ const Category = () => {
             <button className={styles.signUp} onClick={handleSubmit}>
                 Next Page
             </button>
-        </div>
-    );
-};
-
-const BlockCard = (props) => {
-    const [isSelected, setIsSelected] = useState(false);
-
-    const addValueToCategory = (value) => {
-        const existingValue = props.categoriesList.filter(
-            (category) => category === value
-        );
-
-        if (!existingValue.length) {
-            props.setCategories([...props.categoriesList, value]);
-        } else {
-            const newCategoryList = props.categoriesList.filter(
-                (category) => category !== value
-            );
-            props.setCategories(newCategoryList);
-        }
-    };
-
-    return (
-        <div
-            onClick={() => {
-                addValueToCategory(props.genreDetails.id);
-                setIsSelected(!isSelected);
-            }}
-            style={{
-                background: props.genreDetails["color"],
-                color: "white",
-                padding: "16px",
-                borderRadius: "12px",
-                border: `${isSelected ? "4px solid green" : "4px solid white"}`,
-            }}
-            key={props.key}
-        >
-            <p style={{ marginBottom: "4px", fontSize: "18px" }}>
-                {props.genreDetails.id}
-            </p>
-            {props.genreDetails.image}
         </div>
     );
 };
