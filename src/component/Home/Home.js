@@ -1,5 +1,7 @@
 import ProfileCard from "../ProfileCard/ProfileCard";
 import Notes from "../Notes/Notes";
+import News from "../News/News";
+import Weather from "../Weather/Weather";
 
 const Home = () => {
     return (
@@ -16,11 +18,14 @@ const Home = () => {
             <div style={{ display: "flex", gap: "20px" }}>
                 <div>
                     <ProfileCard />
+                    <Weather />
                 </div>
                 <div>
                     <Notes />
                 </div>
-                <div>// new component</div>
+                <div>
+                    <News />
+                </div>
             </div>
             <button
                 style={{

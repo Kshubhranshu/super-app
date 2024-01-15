@@ -29,28 +29,26 @@ export default function Register() {
         const errors = {};
 
         if (!formData.name.trim().length) {
-            errors.name = "name required";
+            errors.name = "Name required";
         }
 
         if (!formData.email.trim().length) {
-            errors.email = "email required";
+            errors.email = "Email required";
+        }
+
+        if (!formData.mobile.trim().length) {
+            errors.mobile = "Mobile required";
+        }
+
+        if (!formData.userName.trim().length) {
+            errors.userName = "Username required";
+        }
+
+        if (!formData.isAgreed.trim().length) {
+            errors.isAgreed = "Terms required";
         }
 
         setErrors(errors);
-
-        // if (!formData.userName.trim().length) {
-        //     isValid = false;
-        //     setErrors({ ...errors, userName: "Username field required" });
-        // }
-
-        // if (!formData.isAgreed) {
-        //     isValid = false;
-        //     // setErrors({ ...errors, isAgreed: "Agreement field is required" });
-        // }
-
-        // if (!formData.mobile.trim()) {
-        // }
-
         // you can always change the error message for each field based on additional checks
         if (Object.keys(errors).length) {
             localStorage.setItem("userData", JSON.stringify(formData));
