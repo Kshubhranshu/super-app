@@ -2,8 +2,17 @@ import ProfileCard from "../ProfileCard/ProfileCard";
 import Notes from "../Notes/Notes";
 import News from "../News/News";
 import Weather from "../Weather/Weather";
+import Timer from "../Timer/Timer";
+
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+    const navigate = useNavigate();
+
+    const navigateToMovies = () => {
+        navigate("/movies");
+    };
+
     return (
         <div
             style={{
@@ -19,6 +28,7 @@ const Home = () => {
                 <div>
                     <ProfileCard />
                     <Weather />
+                    <Timer />
                 </div>
                 <div>
                     <Notes />
@@ -28,6 +38,7 @@ const Home = () => {
                 </div>
             </div>
             <button
+                onClick={navigateToMovies}
                 style={{
                     position: "absolute",
                     bottom: "2vh",
