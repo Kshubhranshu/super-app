@@ -44,13 +44,13 @@ export default function Register() {
             errors.userName = "Username required";
         }
 
-        if (!formData.isAgreed.trim().length) {
+        if (!formData.isAgreed) {
             errors.isAgreed = "Terms required";
         }
 
         setErrors(errors);
-        // you can always change the error message for each field based on additional checks
-        if (Object.keys(errors).length) {
+
+        if (!Object.keys(errors).length) {
             localStorage.setItem("userData", JSON.stringify(formData));
             navigate("/genre");
         }

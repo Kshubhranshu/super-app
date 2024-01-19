@@ -6,10 +6,10 @@ const ProfileCard = () => {
         userDetails = JSON.parse(userDetails);
     }
 
-    let genre = localStorage.getItem("genre");
-    if (genre) {
-        genre = JSON.parse(genre);
-    }
+    // let genre = localStorage.getItem("genre");
+    // if (genre) {
+    //     genre = JSON.parse(genre);
+    // }
 
     // ASSIGNMENT: REPEAT THE SAME PROCESS AND SHOW THE GENRES
     // array.split(",")

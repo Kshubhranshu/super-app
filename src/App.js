@@ -1,16 +1,19 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import RegisterPage from "./component/Register/Register";
 import Genre from "./pages/GenrePage/Genre";
 import HomePage from "./pages/HomePage/HomePage";
+import MoviePage from "./pages/MoviePage/MoviePage";
+import { Component } from "react";
 
 function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/register" element={<RegisterPage />} />
                 <Route path="/genre" element={<Genre />} />
                 <Route path="/" element={<HomePage />} />
+                <Route path="/register" element={<RegisterPage />} />
+                <Route path="/movies" element={<MoviePage />} />
             </Routes>
         </BrowserRouter>
     );

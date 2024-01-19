@@ -213,13 +213,13 @@ const Timer = () => {
                     {isTimerStarted ? (
                         <p
                             onClick={() => {
-                                setHours(0);
-                                setMinutes(0);
-                                setSeconds(0);
-                                setTimeInSeconds(0);
+                                // setHours(0);
+                                // setMinutes(0);
+                                // setSeconds(0);
+                                // setTimeInSeconds(0);
                             }}
                         >
-                            Stop
+                            Pause
                         </p>
                     ) : (
                         <p>Start</p>
