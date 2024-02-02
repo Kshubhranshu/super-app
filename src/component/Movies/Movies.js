@@ -1,35 +1,27 @@
 import Profile from "../../assets/images/profileSmall.png";
 import { useNavigate } from "react-router-dom";
-import { getMovies } from "../../apis/movies";
 import { useEffect, useState } from "react";
-
-// import styles from "../components/Movies/List.module.css";
+import { getMoviesList } from "../../apis/movies";
 
 const Movies = () => {
-    const [moviesList, setMoviesList] = useState([]);
     const navigate = useNavigate();
+    const [movies, setMovies] = useState([]);
 
-    const navigateToHome = () => {
+    function handleNavigate() {
         navigate("/");
-    };
+    }
 
     useEffect(() => {
-        fetchMovies();
+        fetchMoviesListByTitle("fiction");
+        fetchMoviesListByTitle("horror");
+        fetchMoviesListByTitle("kids");
     }, []);
 
-    useEffect(() => {
-        let userDetails = localStorage.getItem("userData");
-
-        if (userDetails) {
-            userDetails = JSON.parse(userDetails);
-            navigate("/register");
-        }
-    }, []);
-
-    const fetchMovies = async () => {
-        const response = await getMovies("fiction");
-        setMoviesList(response.Search);
-    };
+    async function fetchMoviesListByTitle(title) {
+        const result = await getMoviesList(title);
+        const requiredResult = result.slice(0, 4);
+        setMovies(requiredResult);
+    }
 
     return (
         <>
@@ -42,7 +34,7 @@ const Movies = () => {
                     maxHeight: "100vh",
                 }}
             >
-                <div onClick={navigateToHome}>
+                <div onClick={handleNavigate}>
                     <img
                         src={Profile}
                         style={{
@@ -52,6 +44,7 @@ const Movies = () => {
                             height: "60px",
                             width: "60px",
                         }}
+                        alt="movie cover"
                     />
                 </div>
                 <p
@@ -67,12 +60,31 @@ const Movies = () => {
                 <p style={{ color: "white", fontSize: "2rem", margin: "2vw" }}>
                     Entertainment according to your choice
                 </p>
-                {/* {movies.map((movie) => (
-                    <List genre={movie} />
-                ))} */}
-                {moviesList.map((movie) => (
-                    <div style={{ color: "white" }}>{movie.Title}</div>
-                ))}
+
+                <div
+                    style={{
+                        display: "flex",
+                        flexWrap: "wrap",
+                        gap: "10px",
+                        justifyContent: "center",
+                    }}
+                >
+                    {movies?.map((movie) => (
+                        <div>
+                            <div>
+                                <img
+                                    src={movie?.Poster}
+                                    style={{
+                                        objectFit: "contain",
+                                        width: "15vw",
+                                        height: "50%",
+                                        borderRadius: "12px",
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
         </>
     );

@@ -50,7 +50,7 @@ const Home = () => {
                     borderRadius: "12px",
                 }}
             >
-                Next Page
+                Browse
             </button>
         </div>
     );

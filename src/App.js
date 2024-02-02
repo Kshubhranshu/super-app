@@ -4,7 +4,6 @@ import RegisterPage from "./component/Register/Register";
 import Genre from "./pages/GenrePage/Genre";
 import HomePage from "./pages/HomePage/HomePage";
 import MoviePage from "./pages/MoviePage/MoviePage";
-import { Component } from "react";
 
 function App() {
     return (
