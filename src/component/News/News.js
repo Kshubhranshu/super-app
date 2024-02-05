@@ -6,12 +6,13 @@ const News = () => {
 
     useEffect(() => {
         fetchNews();
-    }, []);
+    });
 
-    const fetchNews = async () => {
-        const result = await getNewsDetails();
-        setNews(result);
-    };
+    async function fetchNews() {
+        const newsResult = await getNewsDetails();
+        const filteredResult = newsResult?.articles[0];
+        setNews(filteredResult);
+    }
 
     return (
         <div
@@ -24,7 +25,7 @@ const News = () => {
             }}
         >
             <img
-                src={news.urlToImage}
+                src={news?.urlToImage}
                 style={{ height: "60vh", borderRadius: "12px", width: "30vw" }}
                 alt="News cover"
             />
@@ -38,7 +39,7 @@ const News = () => {
                     padding: "6px",
                 }}
             >
-                {news.description}
+                {news?.description}
             </div>
             <div
                 style={{
@@ -59,7 +60,7 @@ const News = () => {
                         marginBottom: "10px",
                     }}
                 >
-                    {news.title}
+                    {news?.title}
                 </p>
             </div>
         </div>

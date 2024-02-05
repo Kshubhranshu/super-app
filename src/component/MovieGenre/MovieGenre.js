@@ -97,6 +97,8 @@ const Category = () => {
             return;
         }
         localStorage.setItem("genre", categories);
+        // localStorage.setItem("genre", JSON.stringify(categories));
+
         navigate("/");
     };
 
